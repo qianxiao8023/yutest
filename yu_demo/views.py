@@ -1,0 +1,16 @@
+# -*- coding: utf-8 -*-
+from yutest.account.decorators import login_exempt
+from yutest.common.mymako import render_mako_context, render_json
+
+
+def test1(request):
+    return render_mako_context(request, '/yudemo/inf.html', {})
+
+#@csrf_exempt
+#@login_exempt
+def get_app_info(request):
+    return render_json({
+        'result':True,
+        'data':request.GET.get('name'),
+        'message':'success'
+    })

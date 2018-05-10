@@ -30,7 +30,8 @@ BK_PAAS_HOST = 'http://paas.blueking.com:80'
 # 是否启用celery任务
 IS_USE_CELERY = True
 # 本地开发的 celery 的消息队列（RabbitMQ）信息
-BROKER_URL_DEV = 'amqp://guest:guest@127.0.0.1:5672/'
+BROKER_URL_DEV = 'amqp://guest:guest@192.168.109.137:5672/'
+# BROKER_URL_DEV = 'redis://localhost:6379'
 # TOCHANGE 调用celery任务的文件路径, List of modules to import when celery starts.
 CELERY_IMPORTS = (
     'home_application.celery_tasks',
@@ -108,6 +109,7 @@ INSTALLED_APPS = (
     'app_control',
     'account',
     'home_application',
+    'yu_demo',
 )
 
 # ==============================================================================
@@ -189,6 +191,11 @@ ADMIN_USERNAME_LIST = ['admin']
 # ===============================================================================
 # CELERY 配置
 # ===============================================================================
+BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+# CELERY_ACCEPT_CONTENT = ['application/json']
+# CELERY_TASK_SERIALIZER = 'json'
+# CELERY_RESULT_SERIALIZER = 'json'
 if IS_USE_CELERY:
     try:
         import djcelery
@@ -201,7 +208,7 @@ if IS_USE_CELERY:
         if "celery" in sys.argv:
             DEBUG = False
         # celery 的消息队列（RabbitMQ）信息
-        BROKER_URL = os.environ.get('BK_BROKER_URL', BROKER_URL_DEV)
+        # BROKER_URL = os.environ.get('BK_BROKER_URL', BROKER_URL_DEV)
         if RUN_MODE == 'DEVELOP':
             from celery.signals import worker_process_init
 
