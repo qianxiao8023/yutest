@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-from yutest.account.decorators import login_exempt
-from yutest.common.mymako import render_mako_context, render_json
+from common.mymako import render_mako_context, render_json
 
 
 def test1(request):
