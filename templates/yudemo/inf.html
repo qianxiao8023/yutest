@@ -37,7 +37,11 @@
     color: #fff;
 }
 </style>
-
+    <script type="text/javascript">
+	    	  var app_id = "${APP_ID}";
+			    var site_url = "${SITE_URL}";	  // app的url前缀,在ajax调用的时候，应该加上该前缀
+			    var static_url = "${STATIC_URL}"; // 静态资源前缀
+	      </script>
 </head>
 
 <body class="bg-white" data-bg-color="bg-white">
@@ -95,16 +99,19 @@
             </form>
             <form class="form-horizontal">
                 <div class="panel panel-default mb0">
-                    <div class="panel-heading"> 面板标题 </div>
+                    <div class="panel-heading"> 查询结果 </div>
                     <div class="panel-body">
                         <table class="table mb0 pr15 ranger-box2  ">
                             <thead>
                                 <tr>
                                     <th style="width: 70px;">#</th>
-                                    <th style="width: 15%;">名称</th>
-                                    <th style="width: 15%;">位置</th>
-                                    <th style="width: 15%;">日期</th>
-                                    <th style="width: 15%;">类型</th>
+                                    <th style="width: 15%;">IP</th>
+                                    <th style="width: 15%;">Mem/Disk/CPU</th>
+                                    <th style="width: 15%;">最后巡检时间</th>
+                                    <th style="width: 15%;">大区</th>
+                                    <th>模块</th>
+                                    <th>云区域</th>
+                                    <th>系统类型</th>
                                     <th>操作</th>
                                 </tr>
                             </thead>
@@ -214,9 +221,9 @@
         </div>
     </div>
     <script>
-        $("check1").click(function(e){
-                   $.get(site_url + 'demo/get_app_info/', {
-                       'name': 'miya'
+        $("#check1").click(function(e){
+                   $.get(site_url + 'yudemo/get_app_info/', {
+                       'name': 'test'
                    }, function(res){
                        alert(res.message);
                    }, 'json')

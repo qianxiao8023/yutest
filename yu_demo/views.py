@@ -9,6 +9,7 @@ def test1(request):
 #@login_exempt
 def get_app_info(request):
     return render_json({
+        'name':'test',
         'result':True,
         'data':request.GET.get('name'),
         'message':'success'
