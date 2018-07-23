@@ -153,11 +153,10 @@
              var multiplicand = $("#multiplicand").val();
              $.post("${SITE_URL}multiplication_figure/",{
                 'multiplier':multiplier,
-                 'multiplicand':multiplicand,
+                 'multiplicand':multiplicand
              },function (res){
                 if(res.result) {
                     $("#mult_result").html(res.mult_result);
-
                 }
              }, 'json');
          })
