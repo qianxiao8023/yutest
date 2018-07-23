@@ -9,7 +9,7 @@ def home(request):
     """
     return render_mako_context(request, '/home_application/home.html')
 
-def mult_figure(request):
+def multiplication_figure(request):
     multiplier = int(request.POST.get('multiplier'))
     multiplicand = int(request.POST.get('multiplicand'))
     mult_result = multiplier * multiplicand
