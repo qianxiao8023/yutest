@@ -13,7 +13,6 @@ You can load different configurations depending on yourcurrent environment.
 ENVIRONMENT = os.environ.get("BK_ENV", "development")
 # Inherit from environment specifics
 conf_module = "conf.settings_%s" % ENVIRONMENT
-
 try:
     module = __import__(conf_module, globals(), locals(), ['*'])
 except ImportError, e:

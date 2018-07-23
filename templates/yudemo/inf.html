@@ -63,8 +63,11 @@
                             <ul class="nav">
                                 <li class="user-info">
                                     <a href="javascript:;">
-                                        <img class="img-rounded" src="https://magicbox.bkclouds.cc/static_api/v3/components/horizontal_nav1/images/avatar.png">
-                                        <span>admin</span>
+                                        %if request.user.is_superuser:
+                                        <span>超级管理者</span>
+                                        %else:
+                                        <span>普通用户</span>
+                                        %endif
                                     </a>
                                 </li>
                             </ul>
@@ -76,13 +79,12 @@
         <div class="king-layout2-main mt15" style="width:960px;">
             <form class="form-horizontal">
                 <div class="form-group clearfix ">
-                    <label class="col-sm-3 control-label bk-lh30 pt0">选择业务：</label>
+                    <label class="col-sm-3 control-label bk-lh30 pt0">业务列表：</label>
                     <div class="col-sm-9">
                         <select name="" id="" class="form-control bk-valign-top">
-                            <option value="选择项1">选择项1</option>
-                            <option value="选择项2">选择项2</option>
-                            <option value="选择项3">选择项3</option>
-                            <option value="选择项4">选择项4</option>
+                        % for bk_biz in bk_biz_list:
+                                <option value="${bk_biz['bk_biz_id']}">${bk_biz['bk_biz_name']}</option>
+                        % endfor
                         </select>
                     </div>
                 </div>
@@ -242,22 +244,6 @@
                 }
 
                 // 异步请求后台数据
-                $.ajax({
-                    url: 'https://magicbox.bkclouds.cc/static_api/v3/components/table7/data.json',
-                    type: 'GET',
-                    success: function(res){
-                        var _html = ' ';
-                        var list = res.items;
-                        var tpl = $('#tpl_15259183884782').html();
-                        var headerTpl =  $('#header_tpl_15259183884782').html();
-                        for (var i=0,len=list.length; i < len; i++){
-                            var item = list[i];
-                            _html += renderTpl(tpl, item)
-                        }
-                        $('.ranger-box2 tbody').html(_html);
-                        $('.ranger-box2 thead').html(renderTpl(headerTpl,res.catalogues));
-                    }
-                });
             });
     </script>
 </body>
