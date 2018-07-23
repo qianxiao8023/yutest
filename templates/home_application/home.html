@@ -151,7 +151,7 @@
          $("#mult_figure").click(function () {
              var multiplier = $("#multiplier").val();
              var multiplicand = $("#multiplicand").val();
-             $.post("${SITE_URL}multiplication/",{
+             $.post("${SITE_URL}multiplication_figure/",{
                 'multiplier':multiplier,
                  'multiplicand':multiplicand,
              },function (res){
